@@ -2,7 +2,7 @@ import { useState } from "react";
 import Icon from "@/components/ui/icon";
 
 function RegisterModal({ onClose }: { onClose: () => void }) {
-  const [tab, setTab] = useState<"phone" | "gmail">("phone");
+  const [tab, setTab] = useState<"phone" | "gmail" | "yandex">("phone");
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
@@ -16,25 +16,31 @@ function RegisterModal({ onClose }: { onClose: () => void }) {
         <div className="p-8">
           <h2 className="text-3xl font-bold tracking-tighter mb-2">РЕГИСТРАЦИЯ</h2>
           <p className="text-neutral-500 mb-6 text-sm">
-            Для входа в <span className="font-bold text-black">Сок PRO</span> зарегистрируйтесь через номер телефона или Gmail
+            Для входа в <span className="font-bold text-black">Сок PRO</span> зарегистрируйтесь через номер телефона, Gmail или Яндекс
           </p>
 
           <div className="flex border-b border-black mb-6">
             <button
               onClick={() => setTab("phone")}
-              className={`flex-1 py-2 text-sm uppercase tracking-widest font-bold transition-colors ${tab === "phone" ? "border-b-2 border-red-600 text-red-600" : "text-neutral-400"}`}
+              className={`flex-1 py-2 text-xs uppercase tracking-widest font-bold transition-colors ${tab === "phone" ? "border-b-2 border-red-600 text-red-600" : "text-neutral-400"}`}
             >
               Телефон
             </button>
             <button
               onClick={() => setTab("gmail")}
-              className={`flex-1 py-2 text-sm uppercase tracking-widest font-bold transition-colors ${tab === "gmail" ? "border-b-2 border-red-600 text-red-600" : "text-neutral-400"}`}
+              className={`flex-1 py-2 text-xs uppercase tracking-widest font-bold transition-colors ${tab === "gmail" ? "border-b-2 border-red-600 text-red-600" : "text-neutral-400"}`}
             >
               Gmail
             </button>
+            <button
+              onClick={() => setTab("yandex")}
+              className={`flex-1 py-2 text-xs uppercase tracking-widest font-bold transition-colors ${tab === "yandex" ? "border-b-2 border-red-600 text-red-600" : "text-neutral-400"}`}
+            >
+              Яндекс
+            </button>
           </div>
 
-          {tab === "phone" ? (
+          {tab === "phone" && (
             <div className="space-y-4">
               <div>
                 <label className="block text-xs uppercase tracking-widest mb-2">Номер телефона</label>
@@ -48,11 +54,22 @@ function RegisterModal({ onClose }: { onClose: () => void }) {
                 Получить код
               </button>
             </div>
-          ) : (
+          )}
+
+          {tab === "gmail" && (
             <div className="space-y-4">
               <button className="w-full border-2 border-black py-4 font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-colors flex items-center justify-center gap-3">
                 <Icon name="Mail" size={20} />
                 Войти через Gmail
+              </button>
+            </div>
+          )}
+
+          {tab === "yandex" && (
+            <div className="space-y-4">
+              <button className="w-full border-2 border-black py-4 font-bold uppercase tracking-widest hover:bg-red-600 hover:text-white hover:border-red-600 transition-colors flex items-center justify-center gap-3">
+                <span className="font-black text-lg leading-none">Я</span>
+                Войти через Яндекс
               </button>
             </div>
           )}
