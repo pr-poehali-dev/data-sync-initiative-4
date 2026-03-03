@@ -2,7 +2,7 @@ import { useState } from "react";
 import Icon from "@/components/ui/icon";
 
 function RegisterModal({ onClose }: { onClose: () => void }) {
-  const [tab, setTab] = useState<"phone" | "gmail" | "yandex">("phone");
+  const [tab, setTab] = useState<"phone" | "gmail" | "yandex" | "vk">("phone");
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
@@ -38,6 +38,12 @@ function RegisterModal({ onClose }: { onClose: () => void }) {
             >
               Яндекс
             </button>
+            <button
+              onClick={() => setTab("vk")}
+              className={`flex-1 py-2 text-xs uppercase tracking-widest font-bold transition-colors ${tab === "vk" ? "border-b-2 border-red-600 text-red-600" : "text-neutral-400"}`}
+            >
+              VK
+            </button>
           </div>
 
           {tab === "phone" && (
@@ -70,6 +76,15 @@ function RegisterModal({ onClose }: { onClose: () => void }) {
               <button className="w-full border-2 border-black py-4 font-bold uppercase tracking-widest hover:bg-red-600 hover:text-white hover:border-red-600 transition-colors flex items-center justify-center gap-3">
                 <span className="font-black text-lg leading-none">Я</span>
                 Войти через Яндекс
+              </button>
+            </div>
+          )}
+
+          {tab === "vk" && (
+            <div className="space-y-4">
+              <button className="w-full border-2 border-black py-4 font-bold uppercase tracking-widest hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-colors flex items-center justify-center gap-3">
+                <span className="font-black text-lg leading-none">VK</span>
+                Войти через VK
               </button>
             </div>
           )}
